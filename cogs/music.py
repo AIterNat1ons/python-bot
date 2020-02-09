@@ -28,4 +28,4 @@ class Music(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(mod(client))
+    client.add_cog(Music(client))
