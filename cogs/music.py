@@ -56,7 +56,7 @@ class Music(commands.Cog):
 
         @commands.Cog.listener()
         async def on_ready(self):
-            print('music.py has been loaded')
+            print('music.py has been loaded!')
 
         @commands.command(pass_context = True)
         async def join(self, ctx):
