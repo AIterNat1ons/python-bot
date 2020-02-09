@@ -1,6 +1,7 @@
 import discord
 import random
 import time
+import asyncio
 from discord.ext import commands
 
 class Fun(commands.Cog):
@@ -38,6 +39,32 @@ class Fun(commands.Cog):
                 "Very doubtful."]
         await ctx.send (f'Question: {question} \nAnswer: {random.choice(responses)}')
 
+    @commands.command()
+    async def count(self, ctx):
+     message = await ctx.send('10 seconds')
+     await asyncio.sleep(1)
+     await message.edit(content ='9 seconds')
+     await asyncio.sleep(1)
+     await message.edit(content ='8 seconds')
+     await asyncio.sleep(1)
+     await message.edit(content ='7 seconds')
+     await asyncio.sleep(1)
+     await message.edit(content ='6 seconds')
+     await asyncio.sleep(1)
+     await message.edit(content ='5 seconds')
+     await asyncio.sleep(1)
+     await message.edit(content ='4 seconds')
+     await asyncio.sleep(1)
+     await message.edit(content ='3 seconds')
+     await asyncio.sleep(1)
+     await message.edit(content ='2 seconds')
+     await asyncio.sleep(1)
+     await message.edit(content ='1 seconds')
+     await asyncio.sleep(1)
+     await message.edit(content ='0 seconds')
+    
+
+    
     
 
 
