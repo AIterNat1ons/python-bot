@@ -4,6 +4,7 @@ import time
 import asyncio
 from discord.ext import commands
 
+
 class Fun(commands.Cog):
 
     def __init__(self, client):
@@ -37,7 +38,15 @@ class Fun(commands.Cog):
                 "My sources say no.",
                 "Outlook not so good.",
                 "Very doubtful."]
-        await ctx.send (f'Question: {question} \nAnswer: {random.choice(responses)}')
+        for8ball = discord.Embed(
+        title = '8ball',
+        description = (f'Question: {question} \nAnswer: {random.choice(responses)}'),
+        colour = discord.Colour.orange()
+            )
+        for8ball.set_thumbnail(url = 'https://p7.hiclipart.com/preview/90/451/830/magic-8-ball-8-ball-pool-eight-ball-crystal-ball-8.jpg')
+        for8ball.set_author(name = ctx.author.name,
+        icon_url= ctx.author.avatar_url)
+        await ctx.send(embed = for8ball)
 
     @commands.command()
     async def count(self, ctx):
@@ -62,10 +71,121 @@ class Fun(commands.Cog):
      await message.edit(content ='1 seconds')
      await asyncio.sleep(1)
      await message.edit(content ='0 seconds')
-    
 
-    
-    
+    @commands.command(aliases = ['howgay'])
+    async def gayrate(self, ctx, *, person):
+        answer = [
+        '1%',
+        '2%',
+        '3%',
+        '4%',
+        '5%',
+        '6%',
+        '7%',
+        '8%',
+        '9%',
+        '10%',
+        '11%',
+        '12%',
+        '13%',
+        '14%',
+        '15%',
+        '16%',
+        '17%',
+        '18%',
+        '19%',
+        '20%',
+        '21%',
+        '22%',
+        '23%',
+        '24%',
+        '25%',
+        '26%',
+        '27%',
+        '28%',
+        '29%',
+        '30%',
+        '31%',
+        '32%',
+        '33%',
+        '34%',
+        '35%',
+        '36%',
+        '37%',
+        '38%',
+        '39%',
+        '40%',
+        '41%',
+        '42%',
+        '43%',
+        '44%',
+        '45%',
+        '46%',
+        '47%',
+        '48%',
+        '49%',
+        '50%',
+        '51%',
+        '52%',
+        '53%',
+        '54%',
+        '55%',
+        '56%',
+        '57%',
+        '58%',
+        '59%',
+        '60%',
+        '61%',
+        '62%',
+        '63%',
+        '64%',
+        '65%',
+        '66%',
+        '67%',
+        '68%',
+        '69%',
+        '70%',
+        '72%',
+        '73%',
+        '74%',
+        '75%',
+        '76%',
+        '77%',
+        '78%',
+        '79%',
+        '80%',
+        '81%',
+        '82%',
+        '83%',
+        '84%',
+        '85%',
+        '86%',
+        '87%',
+        '88%',
+        '89%',
+        '90%',
+        '91%',
+        '92%',
+        '93%',
+        '94%',
+        '95%',
+        '96%',
+        '97%',
+        '98%',
+        '99%',
+        '100%'
+        ]
+        embed = discord.Embed(
+        title = 'Gayrate',
+        description = (f'{person} is {random.choice(answer)} gay'),
+        colour = discord.Colour.blue()
+            )
+        embed.set_thumbnail(url = 'https://i.pinimg.com/originals/d3/18/69/d31869ab8d293ba04af2e3cb6d4d1973.jpg')
+        embed.set_author(name = ctx.author.name,
+        icon_url= ctx.author.avatar_url)
+        await ctx.send(embed = embed)
+
+
 
 
 def setup(client):
