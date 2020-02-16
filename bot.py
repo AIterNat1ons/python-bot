@@ -8,7 +8,7 @@ client = commands.Bot(command_prefix = '.')
 
 @client.event
 async def on_ready():
-    await bot.change_presence(game=discord.Game(name='with prefix .'))
+    await client.change_presence(game=discord.Game(name='with prefix .'))
     print('Bot is online!')
 
 for filename in os.listdir('./cogs'):
