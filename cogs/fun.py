@@ -73,7 +73,7 @@ class Fun(commands.Cog):
      await message.edit(content ='0 seconds')
 
     @commands.command(aliases = ['howgay'])
-    async def gayrate(self, ctx, *, person):
+    async def gayrate(self, ctx, *, person = ctx.author.name):
         answer = [
         '1%',
         '2%',
