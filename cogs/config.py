@@ -28,6 +28,7 @@ class Config(commands.Cog):
 
         with open('prefixes.json', 'w') as f:
             json.dump(prefixes, f, indent = 4)
+        await ctx.send(f':white_check_mark: Successfully changed your prefix to \'{prefix}\'')
 
 
 def setup(client):
