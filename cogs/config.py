@@ -22,7 +22,7 @@ class Config(commands.Cog):
         with open('prefixes.json', 'r') as f:
             prefixes = json.load(f)
 
-        await ctx.send(f':white_check_mark: Successfully changed your prefix to \'{prefix}\'')
+
 
         prefixes [str(ctx.guild.id)] = prefix
 
