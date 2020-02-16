@@ -8,7 +8,7 @@ client = commands.Bot(command_prefix = '.')
 
 @client.event
 async def on_ready():
-    await bot.change_presence(activity=discord.activity(type=discord.ActivityType.watching, name='some commands'))
+    await client.change_presence(activity=discord.activity(type=discord.ActivityType.watching, name='some commands'))
     print('Bot is online!')
 
 for filename in os.listdir('./cogs'):
