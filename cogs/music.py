@@ -3,7 +3,7 @@ import discord
 import youtube_dl
 import asyncio
 from discord.ext import commands
-    
+
 youtube_dl.utils.bug_reports_message = lambda: ''
 
 
@@ -56,7 +56,7 @@ class Music(commands.Cog):
 
         @commands.Cog.listener()
         async def on_ready(self):
-            print('music.py has been loaded!')
+            print('music.py has been loaded')
 
         @commands.command(pass_context = True)
         async def join(self, ctx):
@@ -69,17 +69,36 @@ class Music(commands.Cog):
             await ctx.voice_client.disconnect()
             await ctx.send('Successfully left the voice channel.')
 
-        @commands.command(pass_context=True)
-        async def play(self, ctx, *, url):
-            print(url)
+        @commands.command(aliases = ['p'])
+        async def play(self, ctx, *, song):
+            print(song)
             server = ctx.message.guild
             voice_client = server.voice_client
             voice_client = voice_client
 
-            async with ctx.typing():
-                player = await YTDLSource.from_url(url, loop= self.client.loop)
-                ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
-            await ctx.send('Now playing: {}'.format(player.title))
+            embed = discord.Embed(
+            title = 'Music',
+            description = (f'Loading \'{song}\''),
+            colour = discord.Colour.purple()
+            )
+            embed.set_thumbnail(url = 'https://media.giphy.com/media/pgnxJGob9PQQ0/giphy.gif')
+            embed.set_author(name = ctx.author.name,
+            icon_url= ctx.author.avatar_url)
+
+
+
+            message = await ctx.send(embed = embed)
+            player = await YTDLSource.from_url(song, loop= self.client.loop)
+            ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+            loaded = discord.Embed(
+            title = 'Music',
+            description = ('Now playing: {}'.format(player.title)),
+            colour = discord.Colour.green()
+            )
+            loaded.set_thumbnail(url = 'https://media1.tenor.com/images/b0dd371498f7ea7ca14a9165f2e9711f/tenor.gif?itemid=8958511')
+            loaded.set_author(name = ctx.author.name,
+            icon_url= ctx.author.avatar_url)
+            await message.edit(embed = loaded)
 
 
 
