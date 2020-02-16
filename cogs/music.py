@@ -4,6 +4,11 @@ import youtube_dl
 import asyncio
 from discord.ext import commands
 
+discord.opus.load_opus()
+if not discord.opus.is_loaded():
+    raise RunTimeError('Opus failed to load')
+    
+    
 youtube_dl.utils.bug_reports_message = lambda: ''
 
 
