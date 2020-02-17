@@ -185,6 +185,31 @@ class Fun(commands.Cog):
         icon_url= ctx.author.avatar_url)
         await ctx.send(embed = embed)
 
+    @commands.command()
+    async def penis(self, ctx, *, someone):
+        penisize = [
+        '8D',
+        '8=D',
+        '8==D',
+        '8===D',
+        '8====D',
+        '8=====D',
+        '8======D',
+        '8=======D',
+        '8========D',
+        '8=========D',
+        '8==========D',
+        '8===========D',]
+        penisembed = discord.Embed(
+        title = 'Penis size machine',
+        description = (f'{someone} penis size: \n{random.choice(penisize)}'),
+        colour = discord.Colour.red()
+        )
+        penisembed.set_author(name = ctx.author.name,
+        icon_url = ctx.author.avatar_url)
+        await ctx.send(embed = penisembed)
+
+
 
 
 
