@@ -1,6 +1,7 @@
 import time
 import discord
 from discord.ext import commands
+from discord.ext.commands import has_permissions, MissingPermissions
 
 class mod(commands.Cog):
 
@@ -12,6 +13,7 @@ class mod(commands.Cog):
         print('mod.py has been loaded')
 
     @commands.command()
+    @has_permissions(manage_messages = True)
     async def clear(self, ctx, amount = 5):
      await ctx.channel.purge(limit = amount + 1)
      await ctx.send(f'Deleted {amount} messages')
@@ -19,14 +21,21 @@ class mod(commands.Cog):
      await ctx.channel.purge(limit = 1)
 
     @commands.command()
+    @has_permissions(kick_members = True)
     async def kick (self, ctx, member : discord.Member, *, reason = None):
      await member.kick(reason = reason)
      await ctx.send(f'Successfully kicked {member.mention} for reason {reason}')
 
-    @commands.command()
-    async def ban (self, ctx, member : discord.Member, *, reason = None):
-     await member.ban(reason = reason)
-     await ctx.send(f'Successfully banned {member.mention} for reason {reason}')     
+    @commands.command(name = 'ban')
+    @has_permissions(ban_members = True)
+    async def _ban(self, ctx, member : discord.Member, *, reason = None):
+        await member.ban(reason = reason)
+        await ctx.send(f'Successfully banned {member.mention} for reason {reason}') 
+
+
+
+
+
 
     @commands.command()
     async def unban(self, ctx, *, member):
