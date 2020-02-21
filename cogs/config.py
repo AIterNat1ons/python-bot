@@ -4,6 +4,7 @@ import time
 import asyncio
 import json
 from discord.ext import commands
+from discord.ext.commands import has_permissions, MissingPermissions
 
 
 class Config(commands.Cog):
@@ -13,7 +14,7 @@ class Config(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-          print ('fun.py has been loaded')
+          print ('Config.py has been loaded')
 
 
 
@@ -22,13 +23,18 @@ class Config(commands.Cog):
         with open('prefixes.json', 'r') as f:
             prefixes = json.load(f)
 
-
+        await ctx.send(f':white_check_mark: Successfully changed your prefix to \'{prefix}\'')
 
         prefixes [str(ctx.guild.id)] = prefix
 
         with open('prefixes.json', 'w') as f:
             json.dump(prefixes, f, indent = 4)
-        await ctx.send(f':white_check_mark: Successfully changed your prefix to \'{prefix}\'')
+
+    @commands.command()
+    @has_permissions(manage_roles = True)
+    async def addrole(self, ctx, *, name):
+        await ctx.guild.create_role(name = name)
+        await ctx.send(f'Successfully added the role {name}.')
 
 
 def setup(client):
