@@ -3,6 +3,9 @@ import discord
 import youtube_dl
 import asyncio
 from discord.ext import commands
+songs = asyncio.Queue()
+play_next_song = asyncio.Event()
+queues = {}
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 
@@ -53,6 +56,16 @@ class Music(commands.Cog):
         def __init__(self, client):
             self.client = client
 
+        async def audio_player_task(self, client):
+            while True:
+                play_next_song.clear()
+                current = await queues[id].get()
+                current.start()
+                await play_next_song.wait()
+
+        def toggle_next(self, client):
+            client.loop.call_soon_threadsafe(play_next_song.set)
+            
 
         @commands.Cog.listener()
         async def on_ready(self):
@@ -71,34 +84,92 @@ class Music(commands.Cog):
 
         @commands.command(aliases = ['p'])
         async def play(self, ctx, *, song):
-            print(song)
+                queues[ctx.author.guild.id] = songs
+                print(song)
+                server = ctx.message.guild
+                voice_client = server.voice_client
+                voice_client = voice_client
+                embed = discord.Embed(
+                title = 'Music',
+                description = (f'Loading \'{song}\''),
+                colour = discord.Colour.purple()
+                )
+                embed.set_thumbnail(url = 'https://media.giphy.com/media/pgnxJGob9PQQ0/giphy.gif')
+                embed.set_author(name = ctx.author.name,
+                icon_url= ctx.author.avatar_url)
+                try:
+                    channel = ctx.author.voice.channel
+                    await channel.connect()
+                    message = await ctx.send(embed = embed)
+                    player = await YTDLSource.from_url(song, loop= self.client.loop)
+                    ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+                    loaded = discord.Embed(
+                    title = 'Music',
+                    description = ('Now playing: {}'.format(player.title)),
+                    colour = discord.Colour.green()
+                    )
+                    loaded.set_thumbnail(url = 'https://media1.tenor.com/images/b0dd371498f7ea7ca14a9165f2e9711f/tenor.gif?itemid=8958511')
+                    loaded.set_author(name = ctx.author.name,
+                    icon_url= ctx.author.avatar_url)
+                    await message.edit(embed = loaded)
+                except:
+                    message = await ctx.send(embed = embed)
+                    player = await YTDLSource.from_url(song, loop= self.client.loop)
+                    ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+                    loaded = discord.Embed(
+                    title = 'Music',
+                    description = ('Now playing: {}'.format(player.title)),
+                    colour = discord.Colour.green()
+                    )
+                    loaded.set_thumbnail(url = 'https://media1.tenor.com/images/b0dd371498f7ea7ca14a9165f2e9711f/tenor.gif?itemid=8958511')
+                    loaded.set_author(name = ctx.author.name,
+                    icon_url= ctx.author.avatar_url)
+                    await message.edit(embed = loaded)
+
+        @commands.command()
+        async def stop(self, ctx):
             server = ctx.message.guild
             voice_client = server.voice_client
             voice_client = voice_client
+            try:
+                if ctx.voice_client.is_playing():
+                    ctx.voice_client.stop()
+                    await ctx.send('I have successfully stopped the music for you.')
+                else:
+                    await ctx.send('Nothing is playing for me to stop.')                        
+            except:
+                await ctx.send('I am not in a voice channel!')
 
-            embed = discord.Embed(
-            title = 'Music',
-            description = (f'Loading \'{song}\''),
-            colour = discord.Colour.purple()
-            )
-            embed.set_thumbnail(url = 'https://media.giphy.com/media/pgnxJGob9PQQ0/giphy.gif')
-            embed.set_author(name = ctx.author.name,
-            icon_url= ctx.author.avatar_url)
+        @commands.command()
+        async def pause(self, ctx):
+            server = ctx.message.guild
+            voice_client = server.voice_client
+            voice_client = voice_client
+            try:
+                if ctx.voice_client.is_playing():
+                    ctx.voice_client.pause()
+                    await ctx.send('I have successfully paused the music for you.')
+                else:
+                    await ctx.send('Nothing is playing for me to pause.')                        
+            except:
+                await ctx.send('I am not in a voice channel!')     
 
+        @commands.command()
+        async def resume(self, ctx):
+            server = ctx.message.guild
+            voice_client = server.voice_client
+            voice_client = voice_client
+            try:
+                if ctx.voice_client.is_playing():
+                    ctx.voice_client.resume()
+                    await ctx.send('I have successfully resumed the music for you.')
+                else:
+                    await ctx.send('Nothing is playing for me to resume.')                        
+            except:
+                await ctx.send('I am not in a voice channel!')   
 
+         
 
-            message = await ctx.send(embed = embed)
-            player = await YTDLSource.from_url(song, loop= self.client.loop)
-            ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
-            loaded = discord.Embed(
-            title = 'Music',
-            description = ('Now playing: {}'.format(player.title)),
-            colour = discord.Colour.green()
-            )
-            loaded.set_thumbnail(url = 'https://media1.tenor.com/images/b0dd371498f7ea7ca14a9165f2e9711f/tenor.gif?itemid=8958511')
-            loaded.set_author(name = ctx.author.name,
-            icon_url= ctx.author.avatar_url)
-            await message.edit(embed = loaded)
 
 
 
