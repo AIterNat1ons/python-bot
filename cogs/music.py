@@ -79,8 +79,12 @@ class Music(commands.Cog):
 
         @commands.command(pass_context = True)
         async def leave(self, ctx):
-            await ctx.voice_client.disconnect()
-            await ctx.send('Successfully left the voice channel.')
+            try:
+                await ctx.voice_client.disconnect()
+                await ctx.send('Successfully left the voice channel.')
+            except:
+                await ctx.send('I\'m not in a voice channel for me to leave.')
+            
 
         @commands.command(aliases = ['p'])
         async def play(self, ctx, *, song):
@@ -160,11 +164,11 @@ class Music(commands.Cog):
             voice_client = server.voice_client
             voice_client = voice_client
             try:
-                if ctx.voice_client.is_playing():
+                if not ctx.voice_client.is_playing():
                     ctx.voice_client.resume()
                     await ctx.send('I have successfully resumed the music for you.')
                 else:
-                    await ctx.send('Nothing is playing for me to resume.')                        
+                    await ctx.send('No need to resume, I am already playing something.')                        
             except:
                 await ctx.send('I am not in a voice channel!')   
 
