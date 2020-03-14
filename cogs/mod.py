@@ -28,9 +28,24 @@ class mod(commands.Cog):
 
     @commands.command(name = 'ban')
     @has_permissions(ban_members = True)
-    async def _ban(self, ctx, member : discord.Member, *, reason = None):
+    async def ban(self, ctx, member : discord.Member, *, reason = None):
         await member.ban(reason = reason)
         await ctx.send(f'Successfully banned {member.mention} for reason {reason}') 
+
+    @kick.error
+    async def kick_error(self, ctx, error):
+        if isinstance(error, MissingPermissions):
+            await ctx.send(f'Sorry {ctx.message.author.mention}, you do not have permissions to do that!')
+
+    @ban.error
+    async def ban_error(self, ctx, error):
+        if isinstance(error, MissingPermissions):
+            await ctx.send(f'Sorry {ctx.message.author.mention}, you do not have permissions to do that!')
+
+    @clear.error
+    async def clear_error(self, ctx, error):
+        if isinstance(error, MissingPermissions):
+            await ctx.send(f'Sorry {ctx.message.author.mention}, you do not have permissions to do that!')
 
 
 
