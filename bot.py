@@ -11,11 +11,11 @@ def get_prefix(client, message):
 
     return prefixes[str(message.guild.id)]
 
-client = commands.Bot(command_prefix = '.')
+client = commands.Bot(command_prefix = '.', case_insensitive = True)
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name='some commands'))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.Game, name='with commands | .help'))
     print('Bot is online!')
     
 @client.event
