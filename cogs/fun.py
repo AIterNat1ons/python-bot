@@ -1,8 +1,9 @@
-import discord
+
 import random
+import discord
 import time
 import asyncio
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 
 class Fun(commands.Cog):
@@ -186,7 +187,7 @@ class Fun(commands.Cog):
         await ctx.send(embed = embed)
 
     @commands.command()
-    async def penis(self, ctx, *, someone):
+    async def penis(self, ctx, *, someone = None):
         penisize = [
         '8D',
         '8=D',
@@ -200,6 +201,10 @@ class Fun(commands.Cog):
         '8=========D',
         '8==========D',
         '8===========D',]
+
+        if someone == None:
+            someone = ctx.message.author.mention
+
         penisembed = discord.Embed(
         title = 'Penis size machine',
         description = (f'{someone} penis size: \n{random.choice(penisize)}'),
@@ -208,8 +213,18 @@ class Fun(commands.Cog):
         penisembed.set_author(name = ctx.author.name,
         icon_url = ctx.author.avatar_url)
         await ctx.send(embed = penisembed)
-
-
+    
+    @commands.command()
+    async def pfp(self, ctx, *, member : discord.Member = None):
+        if member == None:
+            other=discord.Embed(color=discord.Colour.red())
+            other.set_image(url=ctx.author.avatar_url)
+            await ctx.send(embed = other)
+        else:
+            embed=discord.Embed(color=discord.Colour.red())
+            embed.set_image(url=member.avatar_url)
+            await ctx.send(embed = embed)
+    
 
 
 
