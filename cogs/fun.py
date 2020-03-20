@@ -214,17 +214,6 @@ class Fun(commands.Cog):
         icon_url = ctx.author.avatar_url)
         await ctx.send(embed = penisembed)
     
-    @commands.command()
-    async def pfp(self, ctx, *, member : discord.Member = None):
-        if member == None:
-            other=discord.Embed(color=discord.Colour.red())
-            other.set_image(url=ctx.author.avatar_url)
-            await ctx.send(embed = other)
-        else:
-            embed=discord.Embed(color=discord.Colour.red())
-            embed.set_image(url=member.avatar_url)
-            await ctx.send(embed = embed)
-    
 
 
 
