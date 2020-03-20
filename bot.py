@@ -12,12 +12,16 @@ def get_prefix(client, message):
     return prefixes[str(message.guild.id)]
 
 client = commands.Bot(command_prefix = '.', case_insensitive = True)
+client.remove_command('help')
 
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.Game, name='with commands | .help'))
     print('Bot is online!')
-    
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send('Command wasn\'t found, make sure the command exists and check if it is spelled correctly.')    
 @client.event
 async def on_guild_join(guild):
     with open('prefixes.json', 'r') as f:
