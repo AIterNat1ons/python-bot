@@ -2,7 +2,6 @@ import random
 import discord
 import time
 import asyncio
-import praw
 from discord.ext import commands, tasks
 
 reddit = praw.Reddit(client_id='Crw9ObcZ3_5gE6Q',
