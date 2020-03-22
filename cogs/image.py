@@ -42,7 +42,8 @@ class Image(commands.Cog):
     async def meme(self, ctx):
         subreddits = ['dankmemes',
                     'memes',
-                    'meirl'
+                    'meirl',
+                    'wholesomememes'
                     ]
         meme_submissions = reddit.subreddit(random.choice(subreddits)).hot()
         post_to_pick = random.randint(1, 10)
@@ -102,7 +103,7 @@ class Image(commands.Cog):
         if isinstance(error, commands.CommandOnCooldown):
             cooldownembed = discord.Embed(
                 title = 'Chill out bro, slow it down',
-                description = f'You\'ll be able to use the command in **{round(error.retry_after)} seconds**\nThe default cooldown is `5s`',
+                description = f'You\'ll be able to use the command in **{round(error.retry_after, 1)} seconds**\nThe default cooldown is `5s`',
                 colour = discord.Colour.blue()
             )
             await ctx.send(embed = cooldownembed)
@@ -112,7 +113,7 @@ class Image(commands.Cog):
         if isinstance(error, commands.CommandOnCooldown):
             cooldownembed = discord.Embed(
                 title = 'Chill out bro, slow it down',
-                description = f'You\'ll be able to use the command in **{round(error.retry_after)} seconds**\nThe default cooldown is `5s`',
+                description = f'You\'ll be able to use the command in **{round(error.retry_after, 1)} seconds**\nThe default cooldown is `5s`',
                 colour = discord.Colour.blue()
             )
             await ctx.send(embed = cooldownembed)
@@ -122,7 +123,7 @@ class Image(commands.Cog):
         if isinstance(error, commands.CommandOnCooldown):
             cooldownembed = discord.Embed(
                 title = 'Chill out bro, slow it down',
-                description = f'You\'ll be able to use the command in **{round(error.retry_after)} seconds**\nThe default cooldown is `5s`',
+                description = f'You\'ll be able to use the command in **{round(error.retry_after, 1)} seconds**\nThe default cooldown is `5s`',
                 colour = discord.Colour.blue()
             )
             await ctx.send(embed = cooldownembed)
@@ -132,7 +133,7 @@ class Image(commands.Cog):
         if isinstance(error, commands.CommandOnCooldown):
             cooldownembed = discord.Embed(
                 title = 'Chill out bro, slow it down',
-                description = f'You\'ll be able to use the command in **{round(error.retry_after)} seconds**\nThe default cooldown is `5s`',
+                description = f'You\'ll be able to use the command in **{round(error.retry_after, 1)} seconds**\nThe default cooldown is `5s`',
                 colour = discord.Colour.blue()
             )
             await ctx.send(embed = cooldownembed)
