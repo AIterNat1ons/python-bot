@@ -26,7 +26,7 @@ class Help(commands.Cog):
         if number == 'fun':
             funhelpembed = discord.Embed(
                 title = '**Fun Commands!**',
-                description = '**8ball**: 8ball is a mysterious balls which will answer your yes or no question ask it any question by doing this .8ball <question>! \n**gayrate**: This will rate how gay you are or someone you specify. To do this do .gayrate <person>! \n**penis**: This will tell you how long your penis is using a machine. To do this you do .penis <person>! \n**count**: This will count down from 10 all the way to 0.'
+                description = '**8ball**: 8ball is a mysterious balls which will answer your yes or no question ask it any question by doing this .8ball <question>! \n**gayrate**: This will rate how gay you are or someone you specify. To do this do .gayrate <person>! \n**penis**: This will tell you how long your penis is using a machine. To do this you do .penis <person>! \n**count**: This will count down from 10 all the way to 0. \n**slap**: Slap the person you would like to slap by specifying a member.'
             )
             funhelpembed.set_footer(text = 'This is only commands for the category \'fun\', if you want to see the rest of the categories type in only .help.')
             await ctx.send(embed = funhelpembed)
@@ -50,7 +50,7 @@ class Help(commands.Cog):
         if number == 'image':
             imagehelpembed = discord.Embed(
                 title = '**Image Commands!**',
-                description = '**pfp**: Shows either your pfp or a specified user\'s pfp by doing .pfp <member>. \n**meme**: The bot will show you a random meme from reddit. \n**minecraft_meme**: This will show you a random minecraft meme from reddit! \n**roblox_meme**: This will show you a random roblox meme from reddit! \n**cat**: This will show you a random cat meme from reddit!'
+                description = '**pfp**: Shows either your pfp or a specified user\'s pfp by doing .pfp <member>. \n**meme**: The bot will show you a random meme from reddit. \n**minecraft_meme**: This will show you a random minecraft meme from reddit! \n**roblox_meme**: This will show you a random roblox meme from reddit! \n**cat**: This will show you a random cat meme from reddit! \n**motivate_me**: This will get you motivated with some inspirational quotes!'
             )
             imagehelpembed.set_footer(text = 'This is only commands for the category \'image\', if you want to see the rest of the categories type in only .help.')
             await ctx.send(embed = imagehelpembed)
