@@ -42,8 +42,7 @@ class Image(commands.Cog):
     async def meme(self, ctx):
         subreddits = ['dankmemes',
                     'memes',
-                    'meirl',
-                    'wholesomememes'
+                    'meirl'
                     ]
         meme_submissions = reddit.subreddit(random.choice(subreddits)).hot()
         post_to_pick = random.randint(1, 10)
@@ -98,6 +97,20 @@ class Image(commands.Cog):
             submissionmcembed.set_footer(text = f'r/{submission.subreddit}')
         await ctx.send(embed = submissionmcembed)
 
+    @commands.command()
+    @commands.cooldown( 1, 5, commands.BucketType.channel)
+    async def motivate_me(self, ctx):
+        meme_submissions = reddit.subreddit('GetMotivated').hot()
+        post_to_pick = random.randint(1, 10)
+        await ctx.trigger_typing()
+        for i in range(0, post_to_pick):
+            i = i
+            submission = next(x for x in meme_submissions if not x.stickied)
+            submissionmcembed = discord.Embed(title = submission.title, colour = discord.Colour.red())
+            submissionmcembed.set_image(url = submission.url)
+            submissionmcembed.set_footer(text = f'r/{submission.subreddit}')
+        await ctx.send(embed = submissionmcembed)
+
     @meme.error
     async def meme_error(self, ctx, error):
         if isinstance(error, commands.CommandOnCooldown):
@@ -130,6 +143,16 @@ class Image(commands.Cog):
 
     @roblox_meme.error
     async def roblox_meme_error(self, ctx, error):
+        if isinstance(error, commands.CommandOnCooldown):
+            cooldownembed = discord.Embed(
+                title = 'Chill out bro, slow it down',
+                description = f'You\'ll be able to use the command in **{round(error.retry_after, 1)} seconds**\nThe default cooldown is `5s`',
+                colour = discord.Colour.blue()
+            )
+            await ctx.send(embed = cooldownembed)
+
+    @motivate_me.error
+    async def motivate_me_error(self, ctx, error):
         if isinstance(error, commands.CommandOnCooldown):
             cooldownembed = discord.Embed(
                 title = 'Chill out bro, slow it down',
