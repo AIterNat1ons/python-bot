@@ -213,6 +213,41 @@ class Fun(commands.Cog):
         penisembed.set_author(name = ctx.author.name,
         icon_url = ctx.author.avatar_url)
         await ctx.send(embed = penisembed)
+
+    @commands.command()
+    async def slap(self, ctx, member : discord.Member):
+        if member == ctx.author:
+            await ctx.send('Silly you, trying to slap yourself don\'t do that!')
+        else:
+            slapways = [
+                'https://media.giphy.com/media/vxvNnIYFcYqEE/giphy.gif',
+                'https://media.giphy.com/media/AW8xRg8LNiR2g/giphy.gif',
+                'https://media1.giphy.com/media/Y6c59hTH3TJoA/giphy.gif',
+                'https://media2.giphy.com/media/uqSU9IEYEKAbS/giphy.gif',
+                'https://media2.giphy.com/media/Gf3AUz3eBNbTW/giphy.gif',
+                'https://media1.tenor.com/images/b71b1ef1f8b26ff391d5fb372e90a27f/tenor.gif?itemid=11326073',
+                'https://media.giphy.com/media/ylqr4JvFaZqnK/giphy.gif',
+                'https://media2.giphy.com/media/tV0HkQju9zHR6/giphy.gif',
+                'https://media2.giphy.com/media/YwxsiPgxjk3Fm/source.gif',
+                'https://media0.giphy.com/media/10L38gtN2vVpgk/giphy.gif',
+                'https://media2.giphy.com/media/11sV0mwXMM5sJi/giphy.gif',
+                'https://media2.giphy.com/media/l0G18UUiIN9qhsR68/giphy.gif',
+                'https://i.pinimg.com/originals/a0/dc/ce/a0dcce4e6eda2eba39d9f1fca82d32b6.gif',
+                'https://media3.giphy.com/media/3oz8xF47ifDGuUALUk/giphy.gif',
+                'https://media1.tenor.com/images/0d93bbf490dd498185c69d33825208d3/tenor.gif?itemid=13795345',
+                'https://gifimage.net/wp-content/uploads/2017/07/anime-slap-gif-14.gif',
+                'https://media1.tenor.com/images/8f2ac924c2cbb874236bd4db6dc7985c/tenor.gif?itemid=14841042'
+            ]
+            slapways = slapways
+            slapembed = discord.Embed(
+                title = 'Get slapped!',
+                description = (f'{ctx.author.mention} brutally slapped {member.mention}.'),
+                colour = discord.Colour.red()
+            )
+            slapembed.set_image(url = random.choice(slapways))
+            await ctx.send(embed = slapembed)
+    
+
     
 
 
