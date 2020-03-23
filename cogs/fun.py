@@ -247,10 +247,90 @@ class Fun(commands.Cog):
             slapembed.set_image(url = random.choice(slapways))
             await ctx.send(embed = slapembed)
     
+    @commands.command()
+    @commands.cooldown(1, 3, commands.BucketType.user)
+    async def rock(self, ctx):
+        answers = [
+            'rock',
+            'paper',
+            'scissors'
+        ]
+        answer = random.choice(answers)
+        if answer == 'rock':
+            await ctx.send('I picked rock, hmm seems like a draw!')
 
+        if answer == 'paper':
+            await ctx.send('I picked paper, hah I win!')
+
+        if answer == 'scissors':
+            await ctx.send('I picked scissors, rip I lost oh well congratulations!')
     
+    @commands.command()
+    @commands.cooldown(1, 3, commands.BucketType.user)
+    async def scissors(self, ctx):
+        answers = [
+            'rock',
+            'paper',
+            'scissors'
+        ]
+        answer = random.choice(answers)
+        if answer == 'rock':
+            await ctx.send('I picked rock, hah I win!')
 
+        if answer == 'paper':
+            await ctx.send('I picked paper, rip I lost oh well congratulations!')
 
+        if answer == 'scissors':
+            await ctx.send('I picked scissors, hmm seems like a draw!')
+
+    @commands.command()
+    @commands.cooldown(1, 3, commands.BucketType.user)
+    async def paper(self, ctx):
+        answers = [
+            'rock',
+            'paper',
+            'scissors'
+        ]
+        answer = random.choice(answers)
+        if answer == 'rock':
+            await ctx.send('I picked rock, rip I lost oh well congratulations!')
+
+        if answer == 'paper':
+            await ctx.send('I picked paper, hmm seems like a draw!')
+
+        if answer == 'scissors':
+            await ctx.send('I picked scissors, hah I win!')
+
+    #errors
+    @paper.error
+    async def paper_error(self, ctx, error):
+        if isinstance(error, commands.CommandOnCooldown):
+            cooldownembed = discord.Embed(
+                title = 'Chill out bro, slow it down',
+                description = f'You\'ll be able to use the command in **{round(error.retry_after, 1)} seconds**\nThe default cooldown is `3s`',
+                colour = discord.Colour.blue()
+            )
+            await ctx.send(embed = cooldownembed)
+            
+    @scissors.error
+    async def scissors_error(self, ctx, error):
+        if isinstance(error, commands.CommandOnCooldown):
+            cooldownembed = discord.Embed(
+                title = 'Chill out bro, slow it down',
+                description = f'You\'ll be able to use the command in **{round(error.retry_after, 1)} seconds**\nThe default cooldown is `3s`',
+                colour = discord.Colour.blue()
+            )
+            await ctx.send(embed = cooldownembed)
+    
+    @rock.error
+    async def rock_error(self, ctx, error):
+        if isinstance(error, commands.CommandOnCooldown):
+            cooldownembed = discord.Embed(
+                title = 'Chill out bro, slow it down',
+                description = f'You\'ll be able to use the command in **{round(error.retry_after, 1)} seconds**\nThe default cooldown is `3s`',
+                colour = discord.Colour.blue()
+            )
+            await ctx.send(embed = cooldownembed)
 
 def setup(client):
     client.add_cog(Fun(client))
