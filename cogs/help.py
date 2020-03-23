@@ -26,7 +26,7 @@ class Help(commands.Cog):
         if number == 'fun':
             funhelpembed = discord.Embed(
                 title = '**Fun Commands!**',
-                description = '**8ball**: 8ball is a mysterious balls which will answer your yes or no question ask it any question by doing this .8ball <question>! \n**gayrate**: This will rate how gay you are or someone you specify. To do this do .gayrate <person>! \n**penis**: This will tell you how long your penis is using a machine. To do this you do .penis <person>! \n**count**: This will count down from 10 all the way to 0. \n**slap**: Slap the person you would like to slap by specifying a member.'
+                description = '**8ball**: 8ball is a mysterious balls which will answer your yes or no question ask it any question by doing this .8ball <question>! \n**gayrate**: This will rate how gay you are or someone you specify. To do this do .gayrate <person>! \n**penis**: This will tell you how long your penis is using a machine. To do this you do .penis <person>! \n**count**: This will count down from 10 all the way to 0. \n**slap**: Slap the person you would like to slap by specifying a member. \n**rock**: Playing rock paper scissors with the bot using rock and see if you win! \n**paper**: Playing rock paper scissors with the bot using paper and see if you win! \n**scissors**: Playing rock paper scissors with the bot using scissors and see if you win!'
             )
             funhelpembed.set_footer(text = 'This is only commands for the category \'fun\', if you want to see the rest of the categories type in only .help.')
             await ctx.send(embed = funhelpembed)
