@@ -312,7 +312,7 @@ class Fun(commands.Cog):
         'from someone murdering them',
         'by suicide',
         'by a heart attack',
-        'by your wife',
+        'by their family',
         'by a cooker',
         'from being in lava',
         'from getting shot',
