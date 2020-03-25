@@ -301,6 +301,65 @@ class Fun(commands.Cog):
         if answer == 'scissors':
             await ctx.send('I picked scissors, hah I win!')
 
+    @commands.command(aliases = ['DP'])
+    async def death_prediction(self, ctx, *, someone):
+        years  = list(range(1, 101))
+        waysofdeath = ['by lung disease',
+        'by a disease',
+        'from bacteria',
+        'by lossing of breathe',
+        'from drowning',
+        'from someone murdering them',
+        'by suicide',
+        'by a heart attack',
+        'by your wife',
+        'by a cooker',
+        'from being in lava',
+        'from getting shot',
+        'by lossing blood',
+        'by falling',
+        'by getting cooked in the oven',
+        'by electricuing yourself',
+        'by giving birth']
+        await ctx.send(f'{someone} will die in {random.choice(years)} year {random.choice(waysofdeath)}.')
+
+    @commands.command(aliases = ['WP'])
+    async def wife_prediction(self, ctx, *, someone):
+        whetheryougonnagetmarried = ['yes', 'no']
+        married = random.choice(whetheryougonnagetmarried)
+        if married == 'yes':
+            years  = list(range(1, 101))
+            waysofdeath = ['a sexy womman',
+            'a fat woman',
+            'an ugly woman',
+            'a woman with big boobs',
+            'a woman with a huge ass',
+            'a woman who will cheat on them',
+            'a woman who hates them',
+            'a woman who will murder them',]
+            await ctx.send(f'{someone} will get married in {random.choice(years)} years by {random.choice(waysofdeath)}.')
+        if married == 'no':
+            await ctx.send(f'I\'m sorry but {someone} will not get married at all.')
+
+    @commands.command(aliases = ['HP'])
+    async def husband_prediction(self, ctx, *, someone):
+        whetheryougonnagetmarried = ['yes', 'no']
+        married = random.choice(whetheryougonnagetmarried)
+        if married == 'yes':
+            years  = list(range(1, 101))
+            waysofdeath = [
+            'a sexy man',
+            'a fat man',
+            'an ugly man',
+            'a man with long penis',
+            'a man with who will cheat on them',
+            'a man who hates them',
+            'a man who will murder them',]
+            await ctx.send(f'{someone} will get married in {random.choice(years)} years by {random.choice(waysofdeath)}.')
+        if married == 'no':
+            await ctx.send(f'I\'m sorry but {someone} will not get married at all.')
+
+
     #errors
     @paper.error
     async def paper_error(self, ctx, error):
