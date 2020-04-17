@@ -3,6 +3,7 @@ import discord
 import json
 import random
 import time
+import asyncpg
 from discord.ext import commands
 
 def get_prefix(client, message):
