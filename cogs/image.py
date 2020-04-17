@@ -7,7 +7,7 @@ from discord.ext import commands, tasks
 
 reddit = praw.Reddit(client_id='rw9ObcZ3_5gE6Q',
                      client_secret='ens6sHopI8z6LHY5gcprwoC3ePY',
-                     password='azzouz2005',
+                     password='myredditpassword',
                      user_agent='testscript by /u/AIterNat1ons',
                      username='AIterNat1ons')
 
