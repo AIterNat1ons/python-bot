@@ -24,8 +24,7 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send('Command wasn\'t found, make sure the command exists and check if it is spelled correctly.')  
         
-async def create_db_pool():
-    client.pg_con = await asyncpg.create_pool(database = 'levels', user = 'postgres', password = 'abdoullahstuff')
+
     
 @client.event
 async def on_guild_join(guild):
@@ -52,6 +51,6 @@ for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
         
-client.loop.run_until_complete(create_db_pool())
+
 
 client.run(os.environ['TOKEN'])
