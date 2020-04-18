@@ -26,7 +26,7 @@ async def on_command_error(ctx, error):
         await ctx.send('Command wasn\'t found, make sure the command exists and check if it is spelled correctly.') 
         
 async def create_db_pool():
-    client.pg_con = await asyncpg.create_pool(database = 'levels', user = 'postgres', password = 'abdoullahstuff', host = '127.0.0.1:49267')
+    client.pg_con = await asyncpg.create_pool(database = 'levels', user = 'postgres', password = 'abdoullahstuff', host = '127.0.0.1', port = '49267')
         
 
     
